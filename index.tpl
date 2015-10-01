@@ -6,5 +6,6 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<b>Kenta kanon</b>
 </body>
 </html>
