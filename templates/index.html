@@ -7,12 +7,15 @@
 
 
         <title>Svensk fotboll</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <div ng-controller="Test">
             <div ng-repeat="movie in greeting"> 
-                    <p ng-repeat="c in movie"> {{c.Title|angular}}</p>
+                    <ul ng-repeat="c in movie">
+                        <li> Title: {{c.Title|angular}} Year: {{c.Year|angular}} 
+                        <img ng-src="{{c.Poster|angular}}"/>
+                        </li>
+                    </ul>
                 </div>
             </div>
     </body>
