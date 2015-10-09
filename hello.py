@@ -13,7 +13,7 @@ app.debug = True
 def hello():
     return render_template("index.html")
 
-@app.route("/update")
+@app.route("/update", methods=['POST', 'GET'])
 def search():
 	query = "star wars"
 	parameters = {'s' : query, 'r' : 'json'}
@@ -22,6 +22,8 @@ def search():
 	movies = json.loads(response.read())
 	#return render_template("search_results.html", data = search)
 	return jsonify(movies)
+
+
 
 
 if __name__ == "__main__":

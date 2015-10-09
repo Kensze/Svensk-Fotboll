@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<html ng-app>
+<html ng-app = "mainApp">
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
         <script src="{{ url_for('static', filename='js/hello.js') }}"></script>
@@ -8,15 +8,23 @@
 
         <title>Svensk fotboll</title>
     </head>
-    <body>
-        <div ng-controller="Test">
+    <body ng-controller="tnt">
+            <div>     
+            <form method="GET">
+                <input type="text">
+               
+                
+            </form>
+             <button ng-click="Test()" type="button">Click</button>
+            
             <div ng-repeat="movie in greeting"> 
                     <ul ng-repeat="c in movie">
-                        <li> Title: {{c.Title|angular}} Year: {{c.Year|angular}} 
-                        <img ng-src="{{c.Poster|angular}}"/>
+                        <li> Title{: {{c.Title|angular}} Year: {{c.Year|angular}} 
+                        <a href ="{c.Poster|angular}}">Länk</a>
                         </li>
                     </ul>
-                </div>
             </div>
+
+            
     </body>
 </html>
