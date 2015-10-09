@@ -2,8 +2,11 @@ import urllib2
 import urllib
 import json
 from flask import Flask, render_template, jsonify
+from flask.ext.triangle import Triangle
 
-app = Flask(__name__)
+
+app = Flask(__name__, static_path='/static')
+Triangle(app)
 app.debug = True
 
 @app.route("/")

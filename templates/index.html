@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<html>
-<head>
-	<title>Svensk fotboll</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-	<b>Kenta kanon</b>
-	<form id="delete-form" action="/update/" method="POST" accept-charset="utf-8">
-		<input type="text" name="search" id ="search"/>
-		<input type="submit" name="subit2" value="Sök!" />
-	</form>
-</body>
+<html ng-app>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="{{ url_for('static', filename='js/hello.js') }}"></script>
+
+
+        <title>Svensk fotboll</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div ng-controller="Test">
+            <div ng-repeat="movie in greeting"> 
+                    <p ng-repeat="c in movie"> {{c.Title|angular}}</p>
+                </div>
+            </div>
+    </body>
 </html>
