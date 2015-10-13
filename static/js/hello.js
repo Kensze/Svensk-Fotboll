@@ -1,12 +1,11 @@
-var mainApp = angular.module("mainApp", []);
+var app = angular.module('myApp', []);
 
-mainApp.controller('tnt', ['$scope', function($scope) {
-       $scope.Test = function($scope, $http) {
-       	$http.get('http://127.0.0.1:5000/update').
-        success(function(data) {
+app.controller('myController', ['$scope', '$http', function($scope, $http) {
+
+    $scope.clickButton = function() {
+        $http.get('http://127.0.0.1:5000/update').success(function(data) {
             $scope.greeting = data;
-        }
-    };
-})]);
+        });
+    }
 
-
+}]);
