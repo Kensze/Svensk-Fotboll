@@ -8,19 +8,19 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
-    <header id="wrapperHeader">
-        <img src="{{ url_for('static', filename='img/header.jpg') }}" id="headerimg">
-        <div ng-controller="myController">
-            
-            <form ng-submit="doSearch(search)">
-                <input type="text" ng-model="search"/>
-                <input type="submit">
-            </form>
+        <header id="wrapperHeader">
+            <img src="{{ url_for('static', filename='img/header.JPG') }}" id="headerimg">
+            <div ng-controller="myController">
 
-                <div ng-repeat="movie in greeting"> 
-                    <p ng-repeat="c in movie">{{c.Title|angular}}</p>
+                <form ng-submit="doSearch(search)">
+                    <input type="text" ng-model="search"/>
+                    <input type="submit">
+                </form>
+
+                <!--- <div ng-repeat="movie in greeting">  --->
+                <p ng-repeat="c in greeting">{{c.title|angular}} {{c.code|angular}}</p>
                 </div>
-        </div>
-    </header>
+            </div>
+        </header>
     </body>
 </html>

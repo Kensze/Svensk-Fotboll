@@ -14,12 +14,26 @@ def hello():
 
 @app.route("/update", methods=['POST', 'GET'])
 def search():
+        #post = request.get_json()
+        #query = post.get('search')
+        #parameters = {'s' : query, 'r' : 'json'}
+        #response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+        #movies = json.loads(response.read())
+        #return jsonify(movies)
+
+
         post = request.get_json()
         query = post.get('search')
-        parameters = {'s' : query, 'r' : 'json'}
-        response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+        parameters = {'movie' : query, 'limit' : 5, 'width' : 320}
+        tmp = 'http://trailersapi.com/trailers.json?' + urllib.urlencode(parameters)
+        response = urllib2.urlopen('http://trailersapi.com/trailers.json?' + urllib.urlencode(parameters))
+        #print tmp
         movies = json.loads(response.read())
-        return jsonify(movies)
+        #print movies
+        print json.dumps(movies)
+        return json.dumps(movies)
+
+
 
 
 if __name__ == "__main__":
