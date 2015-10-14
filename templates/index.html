@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <html ng-app="myApp">
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="{{ url_for('static', filename='js/hello.js') }}"></script>
-    <title>Svensk fotboll</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <header id="wrapperHeader">
-        <div ng-controller="myController">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+        <script src="{{ url_for('static', filename='js/hello.js') }}"></script>
+        <title>Svensk fotboll</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header id="wrapperHeader">
+            <div ng-controller="myController">
 
-            <form ng-submit="doSearch(search); doTrailer(search)" id="searchfield">
-                <input type="text" ng-model="search"/>
-                <input type="submit">
-            </form>
+                <form ng-submit="doSearch(search); doTrailer(search)" id="searchfield">
+                    <input type="text" ng-model="search"/>
+                    <input type="submit">
+                </form>
 
-            <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
+                <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
 
-            <div ng-repeat="movie in greeting"> 
-               <ul ng-repeat="c in movie">
-                   <li> {{c.Title|angular}}</li>
-               </ul>
-            </div>              
+                <div ng-repeat="movie in greeting">
+                    <ul ng-repeat="c in movie">
+                        <li> {{c.Title|angular}} <a ng-href="{{c.imdbID|angular}}">Link</a></li>
+                    </ul>
+                </div>
 
-            <div ng-repeat="trailer in trailers"> 
-                <p>{{trailer.code|angular}}</p> 
+                <div ng-repeat="trailer in trailers">
+                    <p>{{trailer.code|angular}}</p>
+                </div>
+
             </div>
 
-        </div>
-       
-   </header>
-</body>
+        </header>
+    </body>
 </html>

@@ -18,6 +18,17 @@ def search():
         query = post.get('search')
         parameters = {'s' : query, 'r' : 'json'}
         response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+        print 'http://www.omdbapi.com/?' + urllib.urlencode(parameters)
+        movies = json.loads(response.read())
+        return jsonify(movies)
+
+@app.route('/<id>')
+def view(id):
+        #post = request.get_json()
+        #query = post.get('search')
+        parameters = {'i' : id, 'plot' : 'short', 'r' : 'json'}
+        response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+        print 'http://www.omdbapi.com/?' + urllib.urlencode(parameters)
         movies = json.loads(response.read())
         return jsonify(movies)
 
