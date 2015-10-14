@@ -1,0 +1,8 @@
+body{
+	margin: 0;
+}
+
+#headerimg {
+	width: 100%;
+	box-shadow: 0px 5px 10px #888888;
+}

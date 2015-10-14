@@ -13,8 +13,6 @@ app.controller('myController', ['$scope', '$http', function($scope, $http) {
             url: 'update',
             method: "POST",
             data: {search: query},
-           //data: {search: query},
-            //data: JSON.stringify(query)
         }).success(function(data) {
             $scope.greeting = data;
         });

@@ -4,7 +4,6 @@ import json
 from flask import Flask, render_template, jsonify, request
 from flask.ext.triangle import Triangle
 
-
 app = Flask(__name__, static_path='/static')
 Triangle(app)
 app.debug = True
