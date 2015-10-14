@@ -9,15 +9,14 @@
     </head>
     <body>
         <header id="wrapperHeader">
-            <img src="{{ url_for('static', filename='img/header.JPG') }}" id="headerimg">
             <div ng-controller="myController">
 
-                <form ng-submit="doSearch(search); doTrailer(search)">
+                <form ng-submit="doSearch(search); doTrailer(search)" id="searchfield">
                     <input type="text" ng-model="search"/>
                     <input type="submit">
                 </form>
-
-                <!--- <div ng-repeat="movie in greeting">  --->
+                <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
+                <!--- <div ng-repeat="movie in greeting">  -->
                 <div ng-repeat="c in greeting"><p>{{c.title|angular}}</p></div>
                 <div ng-repeat="trailer in trailers"> <p>{{trailer.code|angular}}</p> </div>
                 </div>
