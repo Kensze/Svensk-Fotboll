@@ -14,13 +14,16 @@ def hello():
 
 @app.route("/update", methods=['POST', 'GET'])
 def search():
-        #post = request.get_json()
-        #query = post.get('search')
-        #parameters = {'s' : query, 'r' : 'json'}
-        #response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
-        #movies = json.loads(response.read())
-        #return jsonify(movies)
+        post = request.get_json()
+        query = post.get('search')
+        parameters = {'s' : query, 'r' : 'json'}
+        response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+        movies = json.loads(response.read())
+        return jsonify(movies)
 
+
+@app.route('/trailer', methods=['POST', 'GET'])
+def trailer():
 
         post = request.get_json()
         query = post.get('search')
