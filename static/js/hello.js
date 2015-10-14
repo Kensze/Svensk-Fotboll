@@ -1,6 +1,6 @@
-var app = angular.module('myApp', ['ngSanitize']);
+var app = angular.module('myApp', []);
 
-app.controller('myController', ['$scope', '$http','$sce', function($scope, $http, $sce) {
+app.controller('myController', ['$scope', '$http', function($scope, $http) {
 
     $scope.to_trusted = function(html_code) {
             return $sce.trustAsHtml(html_code);
