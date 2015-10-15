@@ -18,15 +18,16 @@
 
                 <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
 
+                <h1 id="fontpage-H1">Sökresultat:</h1>
                 <div ng-repeat="movie in greeting">
                     <ul ng-repeat="c in movie">
-                        <li> {{c.Title|angular}} <a ng-href='movie/{{c.imdbID|angular}}'>Link</a></li>
+                        <li><a ng-href='movie/{{c.imdbID|angular}}'>{{c.Title|angular}}</a></li>
                     </ul>
                 </div>
 
-                <div ng-repeat="trailer in trailers">
+                <!---<div ng-repeat="trailer in trailers">
                     <p>{{trailer.code|angular}}</p>
-                </div>
+                </div>-->
 
             </div>
 

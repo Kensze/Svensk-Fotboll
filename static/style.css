@@ -10,3 +10,38 @@ body{
 #headerimg {
 	width: 100%;
 }
+
+#plot {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+h1 {
+	text-align: center;
+}
+
+#info-value {
+    font-weight: bold;
+    margin-bottom: -17px;
+    text-align: center;
+}
+
+p {
+	text-align: center;
+}
+
+.ng-scope {
+    list-style-type: none;
+    text-align: center;
+    padding-left: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+#fontpage-H1 {
+    margin-bottom: -5px;
+}
