@@ -40,6 +40,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', functi
         $http.get('http://www.myapifilms.com/taapi?imdb=tt0468569&count=1&format=JSON').success(function(data) {
         //$http.get('http://127.0.0.1:5000/movies/' + $scope.ID).success(function(data) {
             $scope.trailer = data;
+        console.log(data);
             });
     }
 
