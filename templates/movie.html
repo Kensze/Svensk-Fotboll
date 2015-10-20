@@ -9,7 +9,7 @@
     </head>
     <body>
         <header id="wrapperHeader">
-            <div ng-controller="myController" data-ng-init="imdbID()">
+            <div ng-controller="myController" data-ng-init="imdbID();imdbTrailer()">
                 <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
 
                 <h1>{{greeting.Title|angular}}</h1>
@@ -22,7 +22,6 @@
                 <p id="info-value">Runtime:</p> <p>{{greeting.Runtime|angular}}</p>
                 <p id="info-value">IMDB Rating:</p> <p>{{greeting.imdbRating|angular}}</p>
 
-                <div data-ng-init="imdbTrailer()">
                     <div>
                         {{trailer.embed|angular}}
                     </div>
