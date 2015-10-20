@@ -2,10 +2,13 @@ import urllib2
 import urllib
 import json
 from flask import Flask, render_template, jsonify, request
+from flask.ext.cors import CORS, cross_origin
 from flask.ext.triangle import Triangle
 
 app = Flask(__name__, static_path='/static')
 Triangle(app)
+CORS(app)
+#app = Flask(__name__)
 app.debug = True
 
 @app.route("/")
@@ -15,6 +18,14 @@ def hello():
 @app.route("/movie/<ID>")
 def movie(ID):
     return render_template("movie.html")
+
+#@app.route('/trailers/<id>')
+#def trailers(id):
+#        parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
+#        response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
+        #print 'http://www.omdbapi.com/?' + urllib.urlencode(parameters)
+#        movies = json.loads(response.read())
+#        return jsonify(movies)
 
 
 
