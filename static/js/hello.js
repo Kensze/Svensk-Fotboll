@@ -49,7 +49,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
         console.log($scope.ID);
 
         //$scope.ID = "asd";
-        $http.get('http://www.myapifilms.com/taapi?imdb=tt0468569&count=1&format=JSON').success(function(data) {
+       $http.get('http://www.myapifilms.com/taapi?imdb=' + $scope.ID + '&count=1&format=JSON').success(function(data) {
             //$http.get('http://127.0.0.1:5000/movies/' + $scope.ID).success(function(data) {
             //var trailer1 = JSON.parse(data);
             $scope.trailer = data;
