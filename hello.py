@@ -13,7 +13,7 @@ from flask.ext.restful import Api
 app = Flask(__name__, static_path='/static')
 Triangle(app)
 api = restful.Api(app)
-#CORS(app)
+CORS(app)
 #app = Flask(__name__)
 app.debug = True
 

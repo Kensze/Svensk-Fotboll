@@ -1,10 +1,22 @@
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['ngSanitize'])
 
-app.controller('myController', ['$scope', '$http','$location', '$window', function($scope, $http, $location, $window) {
+.filter('toTrusted', ['$sce', function($sce) {
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    };
+}])
+
+app.controller('myController', ['$scope', '$http','$location', '$window', '$sce',  function($scope, $http, $location, $window, $sce, $filter, $compile) {
+
+    $scope.$sce = $sce;
 
     $scope.to_trusted = function(html_code) {
-            return $sce.trustAsHtml(html_code);
+        return $sce.trustAsHtml(html_code);
     }
+
+
+    //app.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+
 
     $scope.imdbID = function() {
         //$scope.ID = $location.pathname();
@@ -13,14 +25,14 @@ app.controller('myController', ['$scope', '$http','$location', '$window', functi
         var pathname = $window.location.pathname.substring(1);
         var parts = pathname.split(/\//);
         if (parts.length > 1 ) {
-                 $scope.ID = parts[1];
+            $scope.ID = parts[1];
         }
         console.log($scope.ID);
 
         //$scope.ID = "asd";
         $http.get('http://127.0.0.1:5000/movies/' + $scope.ID).success(function(data) {
             $scope.greeting = data;
-            });
+    });
     }
 
 
@@ -32,16 +44,19 @@ app.controller('myController', ['$scope', '$http','$location', '$window', functi
         var pathname = $window.location.pathname.substring(1);
         var parts = pathname.split(/\//);
         if (parts.length > 1 ) {
-                 $scope.ID = parts[1];
+            $scope.ID = parts[1];
         }
         console.log($scope.ID);
 
         //$scope.ID = "asd";
         $http.get('http://www.myapifilms.com/taapi?imdb=tt0468569&count=1&format=JSON').success(function(data) {
-        //$http.get('http://127.0.0.1:5000/movies/' + $scope.ID).success(function(data) {
+            //$http.get('http://127.0.0.1:5000/movies/' + $scope.ID).success(function(data) {
+            //var trailer1 = JSON.parse(data);
             $scope.trailer = data;
-        console.log(data);
-            });
+        console.log($scope.trailer);
+        console.log($scope.trailer.trailer);
+        console.log($scope.trailer.embed);
+    });
     }
 
 
@@ -74,4 +89,4 @@ app.controller('myController', ['$scope', '$http','$location', '$window', functi
 
 
 
-}]);
+    }]);
