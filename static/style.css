@@ -17,21 +17,6 @@ body{
     margin-left: 60px;
     margin-right: 60px;
 }
-
-h1 {
-	text-align: center;
-}
-
-#info-value {
-    font-weight: bold;
-    margin-bottom: -17px;
-    text-align: center;
-}
-
-p {
-	text-align: center;
-}
-
 .ng-scope {
     list-style-type: none;
     text-align: center;
@@ -44,4 +29,14 @@ a {
 
 #fontpage-H1 {
     margin-bottom: -5px;
+}
+#left{
+    float: left;
+    width: 50%;
+    height: auto;
+    text-align: left;
+    margin-left: 3%;
+}
+#right{
+    float:left;
 }

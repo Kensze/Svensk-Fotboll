@@ -12,24 +12,27 @@
         <header id="wrapperHeader">
             <div ng-controller="myController" data-ng-init="imdbID(); imdbTrailer()">
                 <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
+                <div id="left">
+                    <h1>{{greeting.Title|angular}}</h1>
+                    <p>{{greeting.Plot|angular}}</p>
 
-                <h1>{{greeting.Title|angular}}</h1>
-                <p id= "plot">{{greeting.Plot|angular}}</p>
+                    <p><b>Writer: </b>{{greeting.Writer|angular}}</p>
+                    <p><b>Actors: </b>{{greeting.Actors|angular}}</p>
+                    <p><b>Genre: </b>{{greeting.Genre|angular}}</p>
 
-                <p id="info-value">Writer:</p> <p>{{greeting.Writer|angular}}</p>
-                <p id="info-value">Actors:</p> <p>{{greeting.Actors|angular}}</p>
-                <p id="info-value">Genre:</p> <p>{{greeting.Genre|angular}}</p>
-
-                <p id="info-value">Runtime:</p> <p>{{greeting.Runtime|angular}}</p>
-                <p id="info-value">IMDB Rating:</p> <p>{{greeting.imdbRating|angular}}</p>
-
-
-                <div><span ng-bind-html="to_trusted(embed)"></span></div>
-                <div ng-bind-html="trailer.trailer[0].embed | toTrusted"></div>
+                    <p><b>Runtime: </b>{{greeting.Runtime|angular}}</p>
+                    <p><b>IMDB Rating: </b>{{greeting.imdbRating|angular}}</p>
+                    <a href="http://127.0.0.1:5000/">Tillbaka</a>
+                </div>
+                <div id="right">
+                    <h2>Trailer:</h2>
+                    <span ng-bind-html="to_trusted(embed)"></span>
+                    <div ng-bind-html="trailer.trailer[0].embed | toTrusted">
+                </div>
 
                 <!--- <iframe width="480" height="270" src="//v.traileraddict.com/81707" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" frameborder="0"></iframe> -->
 
-                <a href="http://127.0.0.1:5000/">Tillbaka</a>
+                
 
                 <!--- <div ng-repeat="trailers in trailer"> -->
                 <!--- <p ng-repeat="c in trailers">{{c.embed|angular}}</p> -->
