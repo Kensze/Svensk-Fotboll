@@ -1,0 +1,150 @@
+swagger: '2.0'
+info:
+  title: MDK Mashup API 
+  description: Hämta trailer och information om alla världens filmer.
+  version: 0.0.1
+host: maxtax.pythonanywhere.com
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /movies/{imdbID}:
+    get:
+      summary: Filmdata
+      description: |
+        Hämtar information om given film baserat på ders IMDB-id. Bland annats hämtas information om skådespelare, regissör, år, titel och filmens handling.  
+      parameters:
+        - name: imdbID
+          in: path
+          description: 'En films unika ID.'
+          required: true
+          type: string
+          format: single
+      tags:
+        - Film
+      responses:
+        '200':
+          description: En lista med filmdata.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Movies'
+        default:
+          description: Incorrect IMDB ID
+          schema:
+            $ref: '#/definitions/Error'
+  /trailers/{imdbID}:
+    get:
+      summary: Trailerdata  
+      description: >
+        Baserat på ett IMDB-ID så hämtas bland annat en iframe med trailern samt ett url till trailern på [Trailer Addict](http://www.traileraddict.com/).
+      parameters:
+        - name: imdbID
+          in: path
+          description: 'En trailers unika ID.'
+          required: true
+          type: string
+          format: single
+      tags:
+        - Trailer
+      responses:
+        '200':
+          description: En lista med trailerdata.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Trailers'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Movies:
+    type: object
+    properties:
+      Actors:
+        type: string
+        description: 'En sträng med samtliga skådespelare avgränsat med ett komma.'
+      Awards:
+        type: string
+        description: 'Sträng med de hur många utmärkelser samt nomineringar filmen fått.'
+      Country:
+        type: string
+        description: 'Sträng med i vilka land filmen är inspelad.'
+      Director:
+        type: string
+        description: 'Filmens regissör'
+      Language:
+        type: string
+        description: 'Vilka språk som talas i filmen.'
+      Metascore:
+        type: string
+        description: 'Ett snittomdöme 0-100'
+      Plot:
+        type: string
+        description: 'Filmens handling'
+      Poster:
+        type: string
+        description: 'Länk till bild på filmens poster.'
+      Rated:
+        type: string
+        description: 'Filmens åldersrekommendation.'
+      Released:
+        type: string
+        description: 'Filmens premiärdatum.'
+      Response:
+        type: string
+        description: 'Indikerar om data hämtas eller ej'
+      Runtime:
+        type: string
+        description: 'Filmens längd i minuter.'
+      Title:
+        type: string
+        description: 'Filmens titel.'
+      Type:
+        type: string
+        description: 'Objektets kategorisering'
+      Writer:
+        type: string
+        description: 'Filmens författare avgränsat med komma'
+      Year:
+        type: string
+        description: 'Filmens premiärår.'
+      imdbID:
+        type: string
+        description: 'En films unika ID.'
+      imdbRating:
+        type: string
+        description: 'Filmens omdöme på IMDB.'
+      imdbVotes:
+        type: string
+        description: 'Antalet omdömen på IMDB.'
+  Trailers:
+    type: object
+    properties:
+      embed:
+        type: string
+        description: 'En Iframe med filmens trailer'
+      imdb:
+        type: string
+        description: 'En films unika ID.'
+      link:
+        type: string
+        description: 'En länk till trailern på Trailer Addict.'
+      pubdate:
+        type: string
+        description: 'Publiceringsdatum'
+      title:
+        type: string
+        description: 'Trailerns titel'
+      trailer_id:
+        type: string
+        description: 'Trailerns ID'
+  Error:
+    type: object
+    properties:
+      Error:
+        type: string
+      Response:
+        type: string
