@@ -22,22 +22,12 @@
 
                     <p><b>Runtime: </b>{{greeting.Runtime|angular}}</p>
                     <p><b>IMDB Rating: </b>{{greeting.imdbRating|angular}}</p>
-                    <a href="/">Tillbaka</a>
                 </div>
                 <div id="right">
                     <h2>Trailer:</h2>
-                    <span ng-bind-html="to_trusted(embed)"></span>
-                    <div ng-bind-html="trailer.trailer[0].embed | toTrusted">
+                    <div ng-bind-html="trailer.trailer[0].embed | toTrusted"></div>
+                    <a href="/">Tillbaka</a>
                 </div>
-
-                <!--- <iframe width="480" height="270" src="//v.traileraddict.com/81707" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" frameborder="0"></iframe> -->
-
-                
-
-                <!--- <div ng-repeat="trailers in trailer"> -->
-                <!--- <p ng-repeat="c in trailers">{{c.embed|angular}}</p> -->
-                </div>
-            </div>
             </div>
         </header>
     </body>

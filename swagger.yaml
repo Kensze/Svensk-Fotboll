@@ -13,7 +13,7 @@ paths:
     get:
       summary: Filmdata
       description: |
-        Hämtar information om given film baserat på ders IMDB-id. Bland annats hämtas information om skådespelare, regissör, år, titel och filmens handling.  
+        Hämtar information om given film baserat på deras IMDB-id. Bland annats hämtas information om skådespelare, regissör, år, titel och filmens handling.  
       parameters:
         - name: imdbID
           in: path
@@ -31,9 +31,11 @@ paths:
             items:
               $ref: '#/definitions/Movies'
         default:
-          description: Incorrect IMDB ID
+          description: Incorrect IMDb ID
           schema:
-            $ref: '#/definitions/Error'
+            type: array
+            items:
+              $ref: '#/definitions/Error'
   /trailers/{imdbID}:
     get:
       summary: Trailerdata  
@@ -56,9 +58,11 @@ paths:
             items:
               $ref: '#/definitions/Trailers'
         default:
-          description: Unexpected error
+          description: Incorrect IMDb ID
           schema:
-            $ref: '#/definitions/Error'
+            type: array
+            items:
+              $ref: '#/definitions/Error'
 definitions:
   Movies:
     type: object
