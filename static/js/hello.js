@@ -30,7 +30,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
         console.log($scope.ID);
 
         //$scope.ID = "asd";
-        $http.get('http://127.0.0.1:5000/movies/' + $scope.ID).success(function(data) {
+        $http.get('/movies/' + $scope.ID).success(function(data) {
             $scope.greeting = data;
     });
     }
@@ -50,7 +50,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
 
         //$scope.ID = "asd";
        //$http.get('http://www.myapifilms.com/taapi?imdb=' + $scope.ID + '&count=1&format=JSON').success(function(data) {
-       $http.get('http://127.0.0.1:5000/trailers/' + $scope.ID).success(function(data) {
+       $http.get('/trailers/' + $scope.ID).success(function(data) {
             //var trailer1 = JSON.parse(data);
             $scope.trailer = data;
         console.log($scope.trailer);
@@ -62,7 +62,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
 
 
     $scope.clickButton = function() {
-        $http.get('http://127.0.0.1:5000/update').success(function(data) {
+        $http.get('/update').success(function(data) {
             $scope.greeting = data;
     });
     }

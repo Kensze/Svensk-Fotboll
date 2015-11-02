@@ -5,7 +5,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
         <script src="https://code.angularjs.org/1.4.7/angular-sanitize.js"></script>
         <script src="{{ url_for('static', filename='js/hello.js') }}"></script>
-        <title>Svensk fotboll</title>
+        <title>MDK Mashup</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
@@ -22,7 +22,7 @@
 
                     <p><b>Runtime: </b>{{greeting.Runtime|angular}}</p>
                     <p><b>IMDB Rating: </b>{{greeting.imdbRating|angular}}</p>
-                    <a href="http://127.0.0.1:5000/">Tillbaka</a>
+                    <a href="/">Tillbaka</a>
                 </div>
                 <div id="right">
                     <h2>Trailer:</h2>
