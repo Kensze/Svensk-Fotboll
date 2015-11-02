@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: MDK Mashup API 
   description: Hämta trailer och information om alla världens filmer.
-  version: 0.0.1
+  version: 0.8.0
 host: maxtax.pythonanywhere.com
 schemes:
   - https
@@ -13,11 +13,11 @@ paths:
     get:
       summary: Filmdata
       description: |
-        Hämtar information om given film baserat på deras IMDB-id. Bland annats hämtas information om skådespelare, regissör, år, titel och filmens handling.  
+        Hämtar information om given film baserat på deras IMDB-id. Bland annat hämtas information om skådespelare, regissör, år, titel och filmens handling.  
       parameters:
         - name: imdbID
           in: path
-          description: 'En films unika ID.'
+          description: 'En films unika ID. Exempel: tt2310332, tt0076759'
           required: true
           type: string
           format: single
@@ -44,7 +44,7 @@ paths:
       parameters:
         - name: imdbID
           in: path
-          description: 'En trailers unika ID.'
+          description: 'En trailers unika ID. Exempel: tt2310332, tt0076759'
           required: true
           type: string
           format: single

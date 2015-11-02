@@ -3,7 +3,7 @@
     "info": {
         "title": "MDK Mashup API",
         "description": "Hämta trailer och information om alla världens filmer.",
-        "version": "0.0.1"
+        "version": "0.8.0"
     },
     "host": "maxtax.pythonanywhere.com",
     "schemes": [
@@ -16,12 +16,12 @@
         "/movies/{imdbID}": {
             "get": {
                 "summary": "Filmdata",
-                "description": "Hämtar information om given film baserat på deras IMDB-id. Bland annats hämtas information om skådespelare, regissör, år, titel och filmens handling.  \n",
+                "description": "Hämtar information om given film baserat på deras IMDB-id. Bland annat hämtas information om skådespelare, regissör, år, titel och filmens handling.  \n",
                 "parameters": [
                     {
                         "name": "imdbID",
                         "in": "path",
-                        "description": "En films unika ID.",
+                        "description": "En films unika ID. Exempel: tt2310332, tt0076759",
                         "required": true,
                         "type": "string",
                         "format": "single"
@@ -60,7 +60,7 @@
                     {
                         "name": "imdbID",
                         "in": "path",
-                        "description": "En trailers unika ID.",
+                        "description": "En trailers unika ID. Exempel: tt2310332, tt0076759",
                         "required": true,
                         "type": "string",
                         "format": "single"
