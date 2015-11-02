@@ -44,6 +44,8 @@ def trailers(id):
         response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
 	print 'http://www.omdbapi.com/?' + urllib.urlencode(parameters)
         movies = json.loads(response.read())
+        if not movies:
+            return jsonify({"Error": "Incorrect IMDb ID", "Response": "False"})
         return jsonify(movies)
 
 
