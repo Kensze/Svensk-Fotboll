@@ -177,29 +177,34 @@
         "Trailers": {
             "type": "object",
             "properties": {
-                "embed": {
-                    "type": "string",
-                    "description": "En Iframe med filmens trailer"
-                },
-                "imdb": {
-                    "type": "string",
-                    "description": "En films unika ID."
-                },
-                "link": {
-                    "type": "string",
-                    "description": "En länk till trailern på Trailer Addict."
-                },
-                "pubdate": {
-                    "type": "string",
-                    "description": "Publiceringsdatum"
-                },
-                "title": {
-                    "type": "string",
-                    "description": "Trailerns titel"
-                },
-                "trailer_id": {
-                    "type": "string",
-                    "description": "Trailerns ID"
+                "0": {
+                    "type": "object",
+                    "properties": {
+                        "embed": {
+                            "type": "string",
+                            "description": "En Iframe med filmens trailer"
+                        },
+                        "imdb": {
+                            "type": "string",
+                            "description": "En films unika ID."
+                        },
+                        "link": {
+                            "type": "string",
+                            "description": "En länk till trailern på Trailer Addict."
+                        },
+                        "pubdate": {
+                            "type": "string",
+                            "description": "Publiceringsdatum"
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "Trailerns titel"
+                        },
+                        "trailer_id": {
+                            "type": "string",
+                            "description": "Trailerns ID"
+                        }
+                    }
                 }
             }
         },
