@@ -22,7 +22,7 @@
                 <h1 id="fontpage-H1">Sökresultat:</h1>
                 <div ng-repeat="movie in greeting">
                     <ul ng-repeat="c in movie">
-                        <li><a ng-href='movie/{{c.imdbID|angular}}'>{{c.Title|angular}}</a></li>
+                        <li><a ng-href='movie/{{c.imdbID|angular}}'>{{c.Title|angular}} | {{c.Year|angular}}</a></li>
                     </ul>
                 </div>
             </div>
