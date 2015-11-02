@@ -13,16 +13,17 @@
             <div ng-controller="myController">
 
                 <form ng-submit="doSearch(search); doTrailer(search)" id="searchfield">
-                    <input type="text" ng-model="search"/>
-                    <input type="submit">
+                    <input type="text" ng-model="search" placeholder="Sök Film"/>
+                    <input type="submit" value="Sök">
                 </form>
 
                 <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
 
-                <h1 id="fontpage-H1">Sökresultat:</h1>
+                
                 <div ng-repeat="movie in greeting">
+                    <h1 id="fontpage-H1">Sökresultat:</h1>
                     <ul ng-repeat="c in movie">
-                        <li><a ng-href='movie/{{c.imdbID|angular}}'>{{c.Title|angular}} | {{c.Year|angular}}</a></li>
+                        <li id="listitem"><a ng-href='movie/{{c.imdbID|angular}}'>{{c.Title|angular}} | {{c.Year|angular}}</a></li>
                     </ul>
                 </div>
             </div>
