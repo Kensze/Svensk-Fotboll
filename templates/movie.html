@@ -23,7 +23,7 @@
                     <p><b>Runtime: </b>{{greeting.Runtime|angular}}</p>
                     <p><b>IMDB Rating: </b>{{greeting.imdbRating|angular}}</p>
                 </div>
-                <div id="right">
+                <div ng-if="trailer.trailer" id="right">
                     <h2>Trailer:</h2>
                     <div ng-bind-html="trailer.trailer[0].embed | toTrusted"></div>
                     <a href="/">Tillbaka</a>

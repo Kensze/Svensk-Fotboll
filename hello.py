@@ -11,18 +11,19 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 Triangle(app)
 
 
-
-
+#Routen för första sidan som renderar index templaten
 @app.route("/")
 @cross_origin(origins='*', send_wildcard=True)
 def hello():
     return render_template("index.html")
 
+#Route för en film och dess id, en template renderas. I templaten finns javascript som hämtar information
 @app.route("/movie/<ID>")
 @cross_origin(origins='*', send_wildcard=True)
 def movie(ID):
     return render_template("movie.html")
 
+#Hämtar data om en viss trailer som tillhör en film i JSON format från omdb api
 @app.route('/trailers/<id>')
 def trailers(id):
         parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
@@ -33,8 +34,8 @@ def trailers(id):
         return jsonify(movies)
 
 
-
-@app.route("/update", methods=['POST', 'GET', 'OPTIONS'])
+#Hämtar en lista på sökresultat av en filmtitel genom ett api i JSON format
+@app.route("/search", methods=['POST', 'GET', 'OPTIONS'])
 @cross_origin(origins='*', send_wildcard=True)
 def search():
     	post = request.get_json()
@@ -42,8 +43,12 @@ def search():
 	parameters = {'s' : query, 'r' : 'json'}
 	response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
 	movies = json.loads(response.read())
+        if not movies:
+            return jsonify({"Error": "Inga filmer hittade"})
 	return jsonify(movies)
 
+
+#Hämtar information om en film genom omdb api
 @app.route('/movies/<id>')
 @cross_origin(origins='*', send_wildcard=True)
 def view(id):
