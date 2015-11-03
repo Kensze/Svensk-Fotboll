@@ -8,7 +8,7 @@ var app = angular.module('myApp', ['ngSanitize'])
 
 app.controller('myController', ['$scope', '$http','$location', '$window', '$sce',  function($scope, $http, $location, $window, $sce, $filter, $compile) {
 
-
+// Hämtar IMDB-ID från URL:et i webbläsaren. 
     $scope.imdbID = function() {
         var pathname = $window.location.pathname.substring(1);
         var parts = pathname.split(/\//);
@@ -19,7 +19,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
             $scope.greeting = data;
     });
     }
-
+// Hämtar IMDB-ID från URL:en i webbläsren och skickar det till /trailers/. Den får sedan tillbaka en Iframe.
     $scope.imdbTrailer = function() {
         var pathname = $window.location.pathname.substring(1);
         var parts = pathname.split(/\//);
@@ -31,12 +31,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
     });
     }
 
-    $scope.clickButton = function() {
-        $http.get('/search').success(function(data) {
-            $scope.greeting = data;
-    });
-    }
-
+// Den postar till /search/ och får tillbaka sökresultaten. 
     $scope.doSearch = function(query){
         $http({
             url: 'search',
