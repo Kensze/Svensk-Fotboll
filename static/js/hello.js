@@ -15,7 +15,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
         if (parts.length > 1 ) {
             $scope.ID = parts[1];
         }
-        $http.get('/movies/' + $scope.ID).success(function(data) {
+        $http.get('/movie/' + $scope.ID).success(function(data) {
             $scope.greeting = data;
     });
     }
@@ -26,7 +26,7 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
         if (parts.length > 1 ) {
             $scope.ID = parts[1];
         }
-       $http.get('/trailers/' + $scope.ID).success(function(data) {
+       $http.get('/trailer/' + $scope.ID).success(function(data) {
         $scope.trailer = data;
     });
     }

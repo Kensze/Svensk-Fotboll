@@ -22,7 +22,7 @@
                 <div ng-if="!greeting.Error" ng-repeat="movie in greeting">
                     <h1 id="fontpage-H1">Sökresultat:</h1>
                     <ul ng-repeat="c in movie">
-                        <li id="listitem"><a ng-href='movie/{{c.imdbID|angular}}'>{{c.Title|angular}} | {{c.Year|angular}}</a></li>
+                        <li id="listitem"><a ng-href='film/{{c.imdbID|angular}}'>{{c.Title|angular}} | {{c.Year|angular}}</a></li>
                     </ul>
                 </div>
                 <div ng-if="greeting.Error">

@@ -13,7 +13,7 @@
         "application/json"
     ],
     "paths": {
-        "/movies/{imdbID}": {
+        "/movie/{imdbID}": {
             "get": {
                 "summary": "Filmdata",
                 "description": "Hämtar information om given film baserat på deras IMDB-id. Bland annat hämtas information om skådespelare, regissör, år, titel och filmens handling.  \n",
@@ -36,7 +36,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Movies"
+                                "$ref": "#/definitions/Movie"
                             }
                         }
                     },
@@ -52,7 +52,7 @@
                 }
             }
         },
-        "/trailers/{imdbID}": {
+        "/trailer/{imdbID}": {
             "get": {
                 "summary": "Trailerdata",
                 "description": "Baserat på ett IMDB-ID så hämtas bland annat en iframe med trailern samt ett url till trailern på [Trailer Addict](http://www.traileraddict.com/).\n",
@@ -75,7 +75,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Trailers"
+                                "$ref": "#/definitions/Trailer"
                             }
                         }
                     },
@@ -93,7 +93,7 @@
         }
     },
     "definitions": {
-        "Movies": {
+        "Movie": {
             "type": "object",
             "properties": {
                 "Actors": {
@@ -174,7 +174,7 @@
                 }
             }
         },
-        "Trailers": {
+        "Trailer": {
             "type": "object",
             "properties": {
                 "0": {

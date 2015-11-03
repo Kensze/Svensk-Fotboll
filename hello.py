@@ -21,13 +21,13 @@ def hello():
     return render_template("index.html")
 
 #Route för en film och dess id, en template renderas. I templaten finns javascript som hämtar information
-@app.route("/movie/<ID>")
+@app.route("/film/<ID>")
 @cross_origin(origins='*', send_wildcard=True)
 def movie(ID):
     return render_template("movie.html")
 
 #Hämtar data om en viss trailer som tillhör en film i JSON format från omdb api
-@app.route('/trailers/<id>')
+@app.route('/trailer/<id>')
 def trailers(id):
         parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
         response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
@@ -52,7 +52,7 @@ def search():
 
 
 #Hämtar information om en film genom omdb api
-@app.route('/movies/<id>')
+@app.route('/movie/<id>')
 @cross_origin(origins='*', send_wildcard=True)
 def view(id):
     	parameters = {'i' : id, 'plot' : 'short', 'r' : 'json'}
