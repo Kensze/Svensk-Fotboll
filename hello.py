@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import urllib2
 import urllib
 import json
@@ -39,7 +42,7 @@ def trailers(id):
 @cross_origin(origins='*', send_wildcard=True)
 def search():
     	post = request.get_json()
-	query = post.get('search')
+	query = post.get('search').encode('utf8')
 	parameters = {'s' : query, 'r' : 'json'}
 	response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
 	movies = json.loads(response.read())
