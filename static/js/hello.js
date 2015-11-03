@@ -32,14 +32,14 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
     }
 
     $scope.clickButton = function() {
-        $http.get('/update').success(function(data) {
+        $http.get('/search').success(function(data) {
             $scope.greeting = data;
     });
     }
 
     $scope.doSearch = function(query){
         $http({
-            url: 'update',
+            url: 'search',
             method: "POST",
             data: {search: query},
         }).success(function(data) {

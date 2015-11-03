@@ -19,12 +19,14 @@
 
                 <img src="{{ url_for('static', filename='img/header2.jpg') }}" id="headerimg">
 
-                
-                <div ng-repeat="movie in greeting">
+                <div ng-if="!greeting.Error" ng-repeat="movie in greeting">
                     <h1 id="fontpage-H1">Sökresultat:</h1>
                     <ul ng-repeat="c in movie">
                         <li id="listitem"><a ng-href='movie/{{c.imdbID|angular}}'>{{c.Title|angular}} | {{c.Year|angular}}</a></li>
                     </ul>
+                </div>
+                <div ng-if="greeting.Error">
+                    <h1>Felaktig sökning</h1>
                 </div>
             </div>
 
