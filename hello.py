@@ -82,19 +82,12 @@ def view(id):
         parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
         response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
         trailer = json.loads(response.read())
+	embed = trailer['trailer'][0]['embed']
+	link = trailer['trailer'][0]['link']
 
-        r['trailer'] = trailer
+        r['trailer_embed'] = embed
+        r['trailer_link'] = link
         return jsonify(r)
-
-def flatten(d, parent_key='', sep='_'):
-    items = []
-    for k, v in d.items():
-        new_key = parent_key + sep + k if parent_key else k
-        if isinstance(v, collections.MutableMapping):
-            items.extend(flatten(v, new_key, sep=sep).items())
-        else:
-            items.append((new_key, v))
-    return dict(items)
 
 if __name__ == "__main__":
     app.run()
