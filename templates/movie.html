@@ -24,10 +24,11 @@
                     <p><b>IMDB Rating: </b>{{greeting.imdbRating|angular}}</p>
                     <a href="/">Tillbaka</a>
                 </div>
-                <div ng-if="trailer.trailer" id="right">
+                <div ng-if="greeting.trailer_embed != 'Not Found' "  id="right">
                     <h2>Trailer:</h2>
-                    <div ng-bind-html="trailer.trailer[0].embed | toTrusted"></div>
+                    <div ng-bind-html="greeting.trailer_embed | toTrusted"></div>
                 </div>
+				<h1 ng-if="greeting.trailer_embed == 'Not Found'">Trailern hittades ej</h1>
             </div>
         </header>
     </body>
