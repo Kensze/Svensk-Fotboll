@@ -20,24 +20,24 @@ app.debug = True
 @app.route("/")
 @cross_origin(origins='*', send_wildcard=True)
 def hello():
-    return render_template("index.html")
+	return render_template("index.html")
 
 #Route för en film och dess id, en template renderas. I templaten finns javascript som hämtar information
 @app.route("/film/<ID>")
 @cross_origin(origins='*', send_wildcard=True)
 def movie(ID):
-    return render_template("movie.html")
+	return render_template("movie.html")
 
 #Hämtar data om en viss trailer som tillhör en film i JSON format från omdb api
 '''
 @app.route('/trailer/<id>')
 def trailers(id):
-        parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
-        response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
-        movies = json.loads(response.read())
-        if not movies:
-            return jsonify({"Error": "Incorrect IMDb ID", "Response": "False"})
-        return jsonify(movies)
+		parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
+		response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
+		movies = json.loads(response.read())
+		if not movies:
+			return jsonify({"Error": "Incorrect IMDb ID", "Response": "False"})
+		return jsonify(movies)
 '''
 
 
@@ -45,76 +45,64 @@ def trailers(id):
 @app.route("/search", methods=['POST', 'GET', 'OPTIONS'])
 @cross_origin(origins='*', send_wildcard=True)
 def search():
-    	post = request.get_json()
-	query = post.get('search').encode('utf8')
-	parameters = {'s' : query, 'r' : 'json'}
-	response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
-	movies = json.loads(response.read())
-        if not movies:
-            return jsonify({"Error": "Inga filmer hittade"})
-	return jsonify(movies)
+		post = request.get_json()
+		query = post.get('search').encode('utf8')
+		parameters = {'s' : query, 'r' : 'json'}
+		response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+		movies = json.loads(response.read())
+		if not movies:
+			return jsonify({"Error": "Inga filmer hittade"})
+		return jsonify(movies)
 
 
 #Hämtar information om en film genom omdb api
 @app.route('/movie/<id>')
 @cross_origin(origins='*', send_wildcard=True)
 def view(id):
-    	parameters = {'i' : id, 'plot' : 'short', 'r' : 'json'}
-	response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
-	movies = json.loads(response.read())
+	try:
+		parameters = {'i' : id, 'plot' : 'short', 'r' : 'json'}
+		response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+		movies = json.loads(response.read())
 
-	if not movies:
-            return jsonify({"Error": "Ingen film med det id"})
+		if not movies:
+			return jsonify({"Error": "Ingen film med det id"})
 
-        for elem in movies:
-            r = dict(movies)
-	    if r['Awards']:
-		del r['Awards']
-	    if r['Country']:
-		del r['Country']
-	    if r['Director']:
-		del r['Director']
-	    if r['Genre']:
-		del r['Genre']
-	    if r['Language']:
-		del r['Language']
-	    if r['Metascore']:
-		del r['Metascore']
-	    if r['Poster']:
-		del r['Poster']
-	    if r['Rated']:
-		del r['Rated']
-	    if r['Released']:
-		del r['Released']
-	    if r['Response']:
-		del r['Response']
-	    if r['Runtime']:
-		del r['Runtime']
-	    if r['Type']:
-		del r['Type']
-	    if r['Year']:
-		del r['Year']
-	    if r['imdbRating']:
-		del r['imdbRating']
-	    if r['idmbVotes']:
-		del r['imdbVotes']
+		for elem in movies:
+			r = dict(movies)
+			del r['Awards']
+			del r['Country']
+			del r['Director']
+			del r['Genre']
+			del r['Language']
+			del r['Metascore']
+			del r['Poster']
+			del r['Rated']
+			del r['Released']
+			del r['Response']
+			del r['Runtime']
+			del r['Type']
+			del r['Year']
+			del r['imdbRating']
+			del r['imdbVotes']
 
 
-        parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
-        response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
-        trailer = json.loads(response.read())
-	if trailer:
-	    embed = trailer['trailer'][0]['embed']
-	    link = trailer['trailer'][0]['link']
+		parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
+		response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
+		trailer = json.loads(response.read())
+		if trailer:
+			embed = trailer['trailer'][0]['embed']
+			link = trailer['trailer'][0]['link']
 
-	    r['trailer_embed'] = embed
-            r['trailer_link'] = link
+			r['trailer_embed'] = embed
+			r['trailer_link'] = link
 
-	else:
-	 r['trailer_embed'] = "Not Found"
-	 r['trailer_link'] = "Not Found"
+		else:
+	 		r['trailer_embed'] = "Not Found"
+	 		r['trailer_link'] = "Not Found"
 
-        return jsonify(r)
+		return jsonify(r)
+	except: 
+		return jsonify({"Error": "Incorrect IMDBID"})
 
 if __name__ == "__main__":
-    app.run()
+	app.run()
