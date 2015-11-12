@@ -3,7 +3,7 @@
     "info": {
         "title": "MDK Mashup API",
         "description": "Hämta trailer och information om alla världens filmer.",
-        "version": "0.8.0"
+        "version": "1.0.0"
     },
     "host": "maxtax.pythonanywhere.com",
     "schemes": [
@@ -16,7 +16,7 @@
         "/movie/{imdbID}": {
             "get": {
                 "summary": "Filmdata",
-                "description": "Hämtar information om given film baserat på deras IMDB-id. Bland annat hämtas information om skådespelare, regissör, år, titel och filmens handling.  \n",
+                "description": "Hämtar information om given film baserat på deras IMDB-id. Bland annat hämtas information om skådespelare, författare och trailer.  \n",
                 "parameters": [
                     {
                         "name": "imdbID",
@@ -28,7 +28,7 @@
                     }
                 ],
                 "tags": [
-                    "Film"
+                    "Movie"
                 ],
                 "responses": {
                     "200": {
@@ -52,35 +52,35 @@
                 }
             }
         },
-        "/trailer/{imdbID}": {
+        "/search?q={search}": {
             "get": {
-                "summary": "Trailerdata",
-                "description": "Baserat på ett IMDB-ID så hämtas bland annat en iframe med trailern samt ett url till trailern på [Trailer Addict](http://www.traileraddict.com/).\n",
+                "summary": "Filmdata",
+                "description": "Hämtar information om filmer baserat på söksträng.",
                 "parameters": [
                     {
-                        "name": "imdbID",
+                        "name": "search",
                         "in": "path",
-                        "description": "En trailers unika ID. Exempel: tt2310332, tt0076759",
+                        "description": "En söksträng",
                         "required": true,
                         "type": "string",
                         "format": "single"
                     }
                 ],
                 "tags": [
-                    "Trailer"
+                    "Search"
                 ],
                 "responses": {
                     "200": {
-                        "description": "En lista med trailerdata.",
+                        "description": "En lista med sökdata.",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Trailer"
+                                "$ref": "#/definitions/Search"
                             }
                         }
                     },
                     "default": {
-                        "description": "Incorrect IMDb ID",
+                        "description": "Movie not found!",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -100,111 +100,46 @@
                     "type": "string",
                     "description": "En sträng med samtliga skådespelare avgränsat med ett komma."
                 },
-                "Awards": {
-                    "type": "string",
-                    "description": "Sträng med de hur många utmärkelser samt nomineringar filmen fått."
-                },
-                "Country": {
-                    "type": "string",
-                    "description": "Sträng med i vilka land filmen är inspelad."
-                },
-                "Director": {
-                    "type": "string",
-                    "description": "Filmens regissör"
-                },
-                "Language": {
-                    "type": "string",
-                    "description": "Vilka språk som talas i filmen."
-                },
-                "Metascore": {
-                    "type": "string",
-                    "description": "Ett snittomdöme 0-100"
-                },
                 "Plot": {
                     "type": "string",
                     "description": "Filmens handling"
-                },
-                "Poster": {
-                    "type": "string",
-                    "description": "Länk till bild på filmens poster."
-                },
-                "Rated": {
-                    "type": "string",
-                    "description": "Filmens åldersrekommendation."
-                },
-                "Released": {
-                    "type": "string",
-                    "description": "Filmens premiärdatum."
-                },
-                "Response": {
-                    "type": "string",
-                    "description": "Indikerar om data hämtas eller ej"
-                },
-                "Runtime": {
-                    "type": "string",
-                    "description": "Filmens längd i minuter."
                 },
                 "Title": {
                     "type": "string",
                     "description": "Filmens titel."
                 },
-                "Type": {
-                    "type": "string",
-                    "description": "Objektets kategorisering"
-                },
                 "Writer": {
                     "type": "string",
                     "description": "Filmens författare avgränsat med komma"
-                },
-                "Year": {
-                    "type": "string",
-                    "description": "Filmens premiärår."
                 },
                 "imdbID": {
                     "type": "string",
                     "description": "En films unika ID."
                 },
-                "imdbRating": {
+                "trailer_embed": {
                     "type": "string",
-                    "description": "Filmens omdöme på IMDB."
+                    "description": "Iframe med trailer."
                 },
-                "imdbVotes": {
+                "trailer_link": {
                     "type": "string",
-                    "description": "Antalet omdömen på IMDB."
+                    "description": "Länk till trailer på traileraddict."
                 }
             }
         },
-        "Trailer": {
+        "Search": {
             "type": "object",
             "properties": {
-                "0": {
-                    "type": "object",
-                    "properties": {
-                        "embed": {
-                            "type": "string",
-                            "description": "En Iframe med filmens trailer"
-                        },
-                        "imdb": {
-                            "type": "string",
-                            "description": "En films unika ID."
-                        },
-                        "link": {
-                            "type": "string",
-                            "description": "En länk till trailern på Trailer Addict."
-                        },
-                        "pubdate": {
-                            "type": "string",
-                            "description": "Publiceringsdatum"
-                        },
-                        "title": {
-                            "type": "string",
-                            "description": "Trailerns titel"
-                        },
-                        "trailer_id": {
-                            "type": "string",
-                            "description": "Trailerns ID"
-                        }
-                    }
+                "Title": {
+                    "type": "string",
+                    "description": "Filmens titel."
+                },
+                "Year": {
+                    "type": "string",
+                    "description": "Året då filmen släpptes."
+                },
+                "imdbID": {
+                    "type": "string",
+                    "description": "En films unika ID."
                 }
             }
         },

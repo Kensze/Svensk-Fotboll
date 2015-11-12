@@ -104,7 +104,7 @@ def view(id):
 
 		return jsonify(r)
 	except: 
-		return jsonify({"Error": "Incorrect IMDBID"})
+		return jsonify({"Error": "Incorrect IMDBID", "Response": "False"})
 
 if __name__ == "__main__":
 	app.run()
