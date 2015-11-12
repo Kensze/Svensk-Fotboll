@@ -39,6 +39,7 @@ def search():
 	return jsonify(movies)
 
 
+
 #Hämtar information om en film genom omdb api
 @app.route('/movie/<id>')
 @cross_origin(origins='*', send_wildcard=True)
@@ -53,17 +54,14 @@ def view(id):
 			del r['Awards']
 			del r['Country']
 			del r['Director']
-			del r['Genre']
 			del r['Language']
 			del r['Metascore']
 			del r['Poster']
 			del r['Rated']
 			del r['Released']
 			del r['Response']
-			del r['Runtime']
 			del r['Type']
 			del r['Year']
-			del r['imdbRating']
 			del r['imdbVotes']
 
 

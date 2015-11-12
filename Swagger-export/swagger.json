@@ -3,7 +3,7 @@
     "info": {
         "title": "MDK Mashup API",
         "description": "Hämta trailer och information om alla världens filmer.",
-        "version": "1.0.0"
+        "version": "1.1.0"
     },
     "host": "maxtax.pythonanywhere.com",
     "schemes": [
@@ -100,9 +100,17 @@
                     "type": "string",
                     "description": "En sträng med samtliga skådespelare avgränsat med ett komma."
                 },
+                "Genre": {
+                    "type": "string",
+                    "description": "Filmens genre."
+                },
                 "Plot": {
                     "type": "string",
-                    "description": "Filmens handling"
+                    "description": "Filmens handling."
+                },
+                "Runtime": {
+                    "type": "string",
+                    "description": "Filmens längd i minuter."
                 },
                 "Title": {
                     "type": "string",
@@ -110,11 +118,15 @@
                 },
                 "Writer": {
                     "type": "string",
-                    "description": "Filmens författare avgränsat med komma"
+                    "description": "Filmens författare avgränsat med komma."
                 },
                 "imdbID": {
                     "type": "string",
                     "description": "En films unika ID."
+                },
+                "imdbRating": {
+                    "type": "string",
+                    "description": "Filmens betyg på imdb."
                 },
                 "trailer_embed": {
                     "type": "string",
