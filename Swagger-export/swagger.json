@@ -3,7 +3,7 @@
     "info": {
         "title": "MDK Mashup API",
         "description": "Hämta trailer och information om alla världens filmer.",
-        "version": "1.1.0"
+        "version": "1.2.0"
     },
     "host": "maxtax.pythonanywhere.com",
     "schemes": [
@@ -141,9 +141,17 @@
         "Search": {
             "type": "object",
             "properties": {
+                "Poster": {
+                    "type": "string",
+                    "description": "Länk till filmens poster på imdb."
+                },
                 "Title": {
                     "type": "string",
                     "description": "Filmens titel."
+                },
+                "Type": {
+                    "type": "string",
+                    "description": "Typ av media."
                 },
                 "Year": {
                     "type": "string",
