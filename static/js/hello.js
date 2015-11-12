@@ -36,10 +36,11 @@ app.controller('myController', ['$scope', '$http','$location', '$window', '$sce'
 */
 // Den postar till /search/ och får tillbaka sökresultaten. 
     $scope.doSearch = function(query){
+            console.log(query)
         $http({
-            url: 'search',
-            method: "POST",
-            data: {search: query},
+            url: 'search?q=' + query,
+            method: "GET",
+            //data: {search: query},
         }).success(function(data) {
             $scope.greeting = data;
         });

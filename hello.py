@@ -45,8 +45,10 @@ def trailers(id):
 @app.route("/search", methods=['POST', 'GET', 'OPTIONS'])
 @cross_origin(origins='*', send_wildcard=True)
 def search():
-		post = request.get_json()
-		query = post.get('search').encode('utf8')
+		#post = request.get_json()
+		#query = post.get('search').encode('utf8')
+                #res = querydb(request.args)
+                query = request.args.get('q').encode('utf8')
 		parameters = {'s' : query, 'r' : 'json'}
 		response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
 		movies = json.loads(response.read())
