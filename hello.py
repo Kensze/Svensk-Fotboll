@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-
 import collections
-
 import urllib2
 import urllib
 import json
@@ -28,33 +26,17 @@ def hello():
 def movie(ID):
 	return render_template("movie.html")
 
-#Hämtar data om en viss trailer som tillhör en film i JSON format från omdb api
-'''
-@app.route('/trailer/<id>')
-def trailers(id):
-		parameters = {'imdb' : id, 'count' : 1, 'format' : 'json' }
-		response = urllib2.urlopen('http://www.myapifilms.com/taapi?' + urllib.urlencode(parameters))
-		movies = json.loads(response.read())
-		if not movies:
-			return jsonify({"Error": "Incorrect IMDb ID", "Response": "False"})
-		return jsonify(movies)
-'''
-
-
 #Hämtar en lista på sökresultat av en filmtitel genom ett api i JSON format
 @app.route("/search", methods=['POST', 'GET', 'OPTIONS'])
 @cross_origin(origins='*', send_wildcard=True)
 def search():
-		#post = request.get_json()
-		#query = post.get('search').encode('utf8')
-                #res = querydb(request.args)
-                query = request.args.get('q').encode('utf8')
-		parameters = {'s' : query, 'r' : 'json'}
-		response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
-		movies = json.loads(response.read())
-		if not movies:
-			return jsonify({"Error": "Inga filmer hittade"})
-		return jsonify(movies)
+	query = request.args.get('q').encode('utf8')
+	parameters = {'s' : query, 'r' : 'json'}
+	response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
+	movies = json.loads(response.read())
+	if not movies:
+		return jsonify({"Error": "Inga filmer hittade"})
+	return jsonify(movies)
 
 
 #Hämtar information om en film genom omdb api
@@ -65,9 +47,6 @@ def view(id):
 		parameters = {'i' : id, 'plot' : 'short', 'r' : 'json'}
 		response = urllib2.urlopen('http://www.omdbapi.com/?' + urllib.urlencode(parameters))
 		movies = json.loads(response.read())
-
-		if not movies:
-			return jsonify({"Error": "Ingen film med det id"})
 
 		for elem in movies:
 			r = dict(movies)
@@ -99,8 +78,8 @@ def view(id):
 			r['trailer_link'] = link
 
 		else:
-	 		r['trailer_embed'] = "Not Found"
-	 		r['trailer_link'] = "Not Found"
+			r['trailer_embed'] = "Not Found"
+			r['trailer_link'] = "Not Found"
 
 		return jsonify(r)
 	except: 
